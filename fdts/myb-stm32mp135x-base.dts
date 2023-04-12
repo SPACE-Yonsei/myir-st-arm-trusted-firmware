@@ -263,3 +263,24 @@
 	uart-has-rtscts;
 	status = "disabled";
 };
+
+&qspi {
+        pinctrl-names = "default", "sleep";
+        pinctrl-0 = <&quadspi_pins_mx>;
+        pinctrl-1 = <&quadspi_sleep_pins_mx>;
+        reg = <0x58003000 0x1000>,
+              <0x70000000 0x4000000>;
+        #address-cells = <1>;
+        #size-cells = <0>;
+        status = "okay";
+
+        flash0: MT29F2G01AB@0 {
+                compatible = "spi-nand";
+                reg = <0>;
+                spi-rx-bus-width = <4>;
+                spi-tx-bus-width = <4>;
+                spi-max-frequency = <64000000>;
+                #address-cells = <1>;
+                #size-cells = <1>;
+        };
+};
