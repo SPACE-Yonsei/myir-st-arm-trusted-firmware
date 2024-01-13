@@ -16,7 +16,7 @@
 #include "stm32mp135.dtsi"
 #include "stm32mp13xd.dtsi"
 #include "stm32mp13-pinctrl.dtsi"
-#include "stm32mp13-ddr.dtsi"
+// #include "stm32mp13-ddr.dtsi"
 
 /* USER CODE BEGIN includes */
 /* USER CODE END includes */
