@@ -34,6 +34,15 @@
 	};
 
 	/* USER CODE BEGIN root */
+	
+	aliases {
+		serial0 = &uart4;
+        };
+
+	chosen {
+		stdout-path = "serial0:115200n8";
+	};
+
 	/* USER CODE END root */
 
 	clocks {
