@@ -134,6 +134,18 @@
 		};
 	};
 
+	usb_otg_hs_pins_mx: usb_otg_hs_mx-0 {
+		pins1 {
+			pinmux = <STM32_PINMUX('A', 8, AF10)>; /* USB_OTG_HS_SOF */
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <0>;
+		};
+		pins2 {
+			pinmux = <STM32_PINMUX('I', 7, ANALOG)>; /* USB_OTG_HS_VBUS */
+		};
+	};
+
 	/* USER CODE BEGIN pinctrl */
 	/* USER CODE END pinctrl */
 };
@@ -196,6 +208,7 @@
 		CLK_SDMMC1_HCLK6
 		CLK_SDMMC2_HCLK6
 		CLK_STGEN_HSI
+		CLK_USBO_PLL4R
 		CLK_I2C3_PCLK6
 		CLK_UART4_PLL4Q
 		CLK_RNG1_PLL4R
@@ -306,6 +319,36 @@
 
 	/* USER CODE BEGIN uart4 */
 	/* USER CODE END uart4 */
+};
+
+&usbotg_hs{
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb_otg_hs_pins_mx>;
+	status = "okay";
+
+	/* USER CODE BEGIN usbotg_hs */
+	/* USER CODE END usbotg_hs */
+};
+
+&usbphyc{
+	status = "okay";
+
+	/* USER CODE BEGIN usbphyc */
+	/* USER CODE END usbphyc */
+};
+
+&usbphyc_port0{
+	status = "okay";
+
+	/* USER CODE BEGIN usbphyc_port0 */
+	/* USER CODE END usbphyc_port0 */
+};
+
+&usbphyc_port1{
+	status = "okay";
+
+	/* USER CODE BEGIN usbphyc_port1 */
+	/* USER CODE END usbphyc_port1 */
 };
 
 /* USER CODE BEGIN addons */
