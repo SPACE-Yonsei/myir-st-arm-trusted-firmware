@@ -10,7 +10,7 @@
 #include "stm32mp13-ddr3-1x4Gb-1066-binF.dtsi"
 
 / {
-	model = "stm32mp135d-altair-mx.dts";
+	model = "Altair::Main Processor Unit of Avionics - UMi";
 	compatible = "st,stm32mp135d-altair-mx", "st,stm32mp135";
 
 	aliases {
