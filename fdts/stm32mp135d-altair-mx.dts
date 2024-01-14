@@ -10,8 +10,8 @@
 #include "stm32mp13-ddr3-1x4Gb-1066-binF.dtsi"
 
 / {
-	model = "STMicroelectronics STM32MP135F-DK Discovery Board";
-	compatible = "st,stm32mp135f-dk", "st,stm32mp135";
+	model = "stm32mp135d-altair-mx.dts";
+	compatible = "st,stm32mp135d-altair-mx", "st,stm32mp135";
 
 	aliases {
 		serial0 = &uart4;
