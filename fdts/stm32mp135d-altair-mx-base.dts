@@ -22,7 +22,7 @@
 /* USER CODE END includes */
 
 / {
-	model = "STMicroelectronics custom STM32CubeMX board - openstlinux-6.1-yocto-mickledore-mp1-v23.06.21";
+	model = "Altair::Main Processor Unit of Avionics - UMi";
 	compatible = "st,stm32mp135d-altair-mx", "st,stm32mp135";
 
 	memory@c0000000 {
