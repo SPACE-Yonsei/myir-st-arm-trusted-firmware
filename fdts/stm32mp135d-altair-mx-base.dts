@@ -233,7 +233,7 @@
 		CLK_AXI_PLL2P
 		CLK_MLAHBS_PLL3
 		CLK_CKPER_DISABLED
-		CLK_QSPI_ACLK
+		CLK_QSPI_PLL4P
 		CLK_SDMMC1_HSI
 		CLK_SDMMC2_HSI
 		CLK_STGEN_HSI
@@ -259,9 +259,9 @@
 			divmn = < 3 61 >;
 			frac = < 0x1000 >;
 		};
-		pll2_vco_800Mhz: pll2-vco-800Mhz {
+		pll2_vco_1600Mhz: pll2-vco-1600Mhz {
 			src = < CLK_PLL12_HSI >;
-			divmn = < 3 24 >;
+			divmn = < 3 49 >;
 		};
 		pll3_vco_418Mhz: pll3-vco-418Mhz {
 			src = < CLK_PLL3_HSI >;
@@ -297,8 +297,8 @@
 		st,pll = < &pll2_cfg1 >;
 
 		pll2_cfg1: pll2_cfg1 {
-			st,pll_vco = < &pll2_vco_800Mhz >;
-			st,pll_div_pqr = < 1 0 0 >;
+			st,pll_vco = < &pll2_vco_1600Mhz >;
+			st,pll_div_pqr = < 2 0 1 >;
 		};
 		/* USER CODE BEGIN pll2 */
 		/* USER CODE END pll2 */
