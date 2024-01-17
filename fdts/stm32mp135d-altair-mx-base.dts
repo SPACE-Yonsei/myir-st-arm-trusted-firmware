@@ -48,6 +48,7 @@
 		};
 		clk_lse: clk-lse {
 			clock-frequency = <32768>;
+			st,drive = < LSEDRV_LOWEST >;
 
 			/* USER CODE BEGIN clk_lse */
 			/* USER CODE END clk_lse */
@@ -202,42 +203,47 @@
 
 	st,clksrc = <
 		CLK_MPU_PLL1P
-		CLK_AXI_HSI
-		CLK_MLAHBS_HSI
-		CLK_CKPER_DISABLED
-		CLK_SDMMC1_HCLK6
-		CLK_SDMMC2_HCLK6
-		CLK_STGEN_HSI
-		CLK_USBO_PLL4R
-		CLK_I2C3_PCLK6
-		CLK_UART4_PLL4Q
+		CLK_AXI_PLL2P
+		CLK_MLAHBS_PLL3
+		CLK_CKPER_HSE
+		CLK_SDMMC1_PLL4P
+		CLK_SDMMC2_PLL4P
+		CLK_STGEN_HSE
+		CLK_USBO_USBPHY
+		CLK_I2C3_HSI
+		CLK_UART4_HSI
 		CLK_RNG1_PLL4R
 	>;
 	st,clkdiv = <
 		DIV(DIV_MPU, 1)
 		DIV(DIV_AXI, 0)
 		DIV(DIV_MLAHB, 0)
-		DIV(DIV_APB1, 0)
-		DIV(DIV_APB2, 0)
-		DIV(DIV_APB3, 0)
-		DIV(DIV_APB4, 0)
-		DIV(DIV_APB5, 0)
-		DIV(DIV_APB6, 0)
+		DIV(DIV_APB1, 1)
+		DIV(DIV_APB2, 1)
+		DIV(DIV_APB3, 1)
+		DIV(DIV_APB4, 1)
+		DIV(DIV_APB5, 2)
+		DIV(DIV_APB6, 1)
 	>;
 	st,pll_vco {
-		pll1_vco_2000Mhz: pll1-vco-2000Mhz {
-			src = < CLK_PLL12_HSI >;
-			divmn = < 3 61 >;
-			frac = < 0x1000 >;
+		pll1_vco_1999Mhz: pll1-vco-1999Mhz {
+			src = < CLK_PLL12_HSE >;
+			divmn = < 1 82 >;
+			frac = < 0xaaa >;
 		};
-		pll2_vco_800Mhz: pll2-vco-800Mhz {
-			src = < CLK_PLL12_HSI >;
-			divmn = < 3 24 >;
+		pll2_vco_1066Mhz: pll2-vco-1066Mhz {
+			src = < CLK_PLL12_HSE >;
+			divmn = < 2 65 >;
+			frac = < 0x1400 >;
 		};
-		pll4_vco_500Mhz: pll4-vco-500Mhz {
-			src = < CLK_PLL4_HSI >;
-			divmn = < 3 30 >;
-			frac = < 0x800 >;
+		pll3_vco_417Mhz: pll3-vco-417Mhz {
+			src = < CLK_PLL3_HSE >;
+			divmn = < 1 33 >;
+			frac = < 0x1a04 >;
+		};
+		pll4_vco_600Mhz: pll4-vco-600Mhz {
+			src = < CLK_PLL4_HSE >;
+			divmn = < 1 49 >;
 		};
 		/* USER CODE BEGIN rcc_st-pll_vco */
 		/* USER CODE END rcc_st-pll_vco */
@@ -250,7 +256,7 @@
 		st,pll = < &pll1_cfg1 >;
 
 		pll1_cfg1: pll1_cfg1 {
-			st,pll_vco = < &pll1_vco_2000Mhz >;
+			st,pll_vco = < &pll1_vco_1999Mhz >;
 			st,pll_div_pqr = < 0 1 1 >;
 		};
 		/* USER CODE BEGIN pll1 */
@@ -264,11 +270,25 @@
 		st,pll = < &pll2_cfg1 >;
 
 		pll2_cfg1: pll2_cfg1 {
-			st,pll_vco = < &pll2_vco_800Mhz >;
-			st,pll_div_pqr = < 1 0 0 >;
+			st,pll_vco = < &pll2_vco_1066Mhz >;
+			st,pll_div_pqr = < 1 1 0 >;
 		};
 		/* USER CODE BEGIN pll2 */
 		/* USER CODE END pll2 */
+	};
+
+	pll3:st,pll@2 {
+		compatible = "st,stm32mp1-pll";
+		reg = <2>;
+
+		st,pll = < &pll3_cfg1 >;
+
+		pll3_cfg1: pll3_cfg1 {
+			st,pll_vco = < &pll3_vco_417Mhz >;
+			st,pll_div_pqr = < 1 16 36 >;
+		};
+		/* USER CODE BEGIN pll3 */
+		/* USER CODE END pll3 */
 	};
 
 	pll4:st,pll@3 {
@@ -278,8 +298,8 @@
 		st,pll = < &pll4_cfg1 >;
 
 		pll4_cfg1: pll4_cfg1 {
-			st,pll_vco = < &pll4_vco_500Mhz >;
-			st,pll_div_pqr = < 3 4 3 >;
+			st,pll_vco = < &pll4_vco_600Mhz >;
+			st,pll_div_pqr = < 11 59 11 >;
 		};
 		/* USER CODE BEGIN pll4 */
 		/* USER CODE END pll4 */
