@@ -176,13 +176,6 @@
 	/* USER CODE END bsec */
 };
 
-&hash{
-	status = "okay";
-
-	/* USER CODE BEGIN hash */
-	/* USER CODE END hash */
-};
-
 &i2c3{
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c3_pins_mx>;
