@@ -185,13 +185,6 @@
 	/* USER CODE END i2c3 */
 };
 
-&iwdg1{
-	status = "okay";
-
-	/* USER CODE BEGIN iwdg1 */
-	/* USER CODE END iwdg1 */
-};
-
 &iwdg2{
 	status = "okay";
 
