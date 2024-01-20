@@ -192,6 +192,13 @@
 	/* USER CODE END i2c3 */
 };
 
+&iwdg1{
+	status = "okay";
+
+	/* USER CODE BEGIN iwdg1 */
+	/* USER CODE END iwdg1 */
+};
+
 &iwdg2{
 	status = "okay";
 
@@ -252,9 +259,10 @@
 			divmn = < 3 61 >;
 			frac = < 0x1000 >;
 		};
-		pll2_vco_1600Mhz: pll2-vco-1600Mhz {
+		pll2_vco_1066Mhz: pll2-vco-1066Mhz {
 			src = < CLK_PLL12_HSI >;
-			divmn = < 3 49 >;
+			divmn = < 3 32 >;
+			frac = < 0xa00 >;
 		};
 		pll3_vco_418Mhz: pll3-vco-418Mhz {
 			src = < CLK_PLL3_HSI >;
@@ -290,8 +298,8 @@
 		st,pll = < &pll2_cfg1 >;
 
 		pll2_cfg1: pll2_cfg1 {
-			st,pll_vco = < &pll2_vco_1600Mhz >;
-			st,pll_div_pqr = < 2 0 1 >;
+			st,pll_vco = < &pll2_vco_1066Mhz >;
+			st,pll_div_pqr = < 1 0 0 >;
 		};
 		/* USER CODE BEGIN pll2 */
 		/* USER CODE END pll2 */
