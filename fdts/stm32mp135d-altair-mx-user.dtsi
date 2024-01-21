@@ -4,8 +4,6 @@
  * Author: Sangwan Jeon <commits@swjeon.kr>
  */
 
-/dts-v1/;
-
 / {
 	aliases {
 		serial0 = &uart4;
