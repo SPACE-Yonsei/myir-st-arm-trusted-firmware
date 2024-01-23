@@ -18,13 +18,11 @@
 #include "stm32mp13-pinctrl.dtsi"
 #include "stm32mp13-ddr.dtsi"
 
-#include "stm32mp135d-altair-mx-user.dtsi"
-
 /* USER CODE BEGIN includes */
 /* USER CODE END includes */
 
 / {
-	model = "Altair::Main Processor Unit of Avionics - UMi";
+	model = "Altair :: Main Processor Unit of Avionics - UMi";
 	compatible = "st,stm32mp135d-altair-mx", "st,stm32mp135";
 
 	memory@c0000000 {
