@@ -91,7 +91,7 @@
 		};
 		clk_lse: clk-lse {
 			clock-frequency = <32768>;
-			st,drive = < LSEDRV_HIGHEST >;
+			st,drive = < LSEDRV_MEDIUM_HIGH >;
 			st,css;
 
 			/* USER CODE BEGIN clk_lse */
@@ -199,13 +199,7 @@
 	};
 
 	usb_otg_hs_pins_mx: usb_otg_hs_mx-0 {
-		pins1 {
-			pinmux = <STM32_PINMUX('A', 14, AF10)>; /* USB_OTG_HS_SOF */
-			bias-disable;
-			drive-push-pull;
-			slew-rate = <0>;
-		};
-		pins2 {
+		pins {
 			pinmux = <STM32_PINMUX('I', 7, ANALOG)>; /* USB_OTG_HS_VBUS */
 		};
 	};
@@ -287,7 +281,7 @@
 		CLK_QSPI_PLL3R
 		CLK_SDMMC1_HSI
 		CLK_SDMMC2_HSI
-		CLK_STGEN_HSI
+		CLK_STGEN_HSE
 		CLK_USBO_PLL4R
 		CLK_I2C3_PCLK6
 		CLK_UART4_PCLK1
