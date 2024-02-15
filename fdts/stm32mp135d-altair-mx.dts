@@ -112,16 +112,6 @@
 }; /*root*/
 
 &pinctrl {
-	i2c3_pins_mx: i2c3_mx-0 {
-		pins {
-			pinmux = <STM32_PINMUX('H', 3, AF4)>, /* I2C3_SCL */
-					 <STM32_PINMUX('H', 7, AF5)>; /* I2C3_SDA */
-			bias-disable;
-			drive-open-drain;
-			slew-rate = <0>;
-		};
-	};
-
 	quadspi_pins_mx: quadspi_mx-0 {
 		pins1 {
 			pinmux = <STM32_PINMUX('B', 2, AF9)>, /* QUADSPI_BK1_NCS */
@@ -197,15 +187,6 @@
 	/* USER CODE END hash */
 };
 
-&i2c3{
-	pinctrl-names = "default";
-	pinctrl-0 = <&i2c3_pins_mx>;
-	status = "okay";
-
-	/* USER CODE BEGIN i2c3 */
-	/* USER CODE END i2c3 */
-};
-
 &iwdg1{
 	status = "okay";
 
@@ -244,7 +225,6 @@
 		CLK_SDMMC2_PLL4P
 		CLK_STGEN_HSI
 		CLK_USBO_PLL4R
-		CLK_I2C3_HSI
 		CLK_UART4_HSI
 		CLK_RNG1_PLL4R
 	>;
