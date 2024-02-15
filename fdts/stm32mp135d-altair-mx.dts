@@ -22,7 +22,7 @@
 /* USER CODE END includes */
 
 / {
-	model = "Altair :: Main Processor Unit of Avionics - UMi";
+	model = "STMicroelectronics custom STM32CubeMX board - openstlinux-6.1-yocto-mickledore-mp1-v23.06.21";
 	compatible = "st,stm32mp135d-altair-mx", "st,stm32mp135";
 
 	memory@c0000000 {
@@ -91,8 +91,6 @@
 		};
 		clk_lse: clk-lse {
 			clock-frequency = <32768>;
-			st,drive = < LSEDRV_MEDIUM_HIGH >;
-			st,css;
 
 			/* USER CODE BEGIN clk_lse */
 			/* USER CODE END clk_lse */
@@ -116,8 +114,8 @@
 &pinctrl {
 	i2c3_pins_mx: i2c3_mx-0 {
 		pins {
-			pinmux = <STM32_PINMUX('D', 7, AF5)>, /* I2C3_SDA */
-					 <STM32_PINMUX('H', 3, AF4)>; /* I2C3_SCL */
+			pinmux = <STM32_PINMUX('H', 3, AF4)>, /* I2C3_SCL */
+					 <STM32_PINMUX('H', 7, AF5)>; /* I2C3_SDA */
 			bias-disable;
 			drive-open-drain;
 			slew-rate = <0>;
@@ -128,9 +126,7 @@
 		pins1 {
 			pinmux = <STM32_PINMUX('B', 2, AF9)>, /* QUADSPI_BK1_NCS */
 					 <STM32_PINMUX('F', 8, AF10)>, /* QUADSPI_BK1_IO0 */
-					 <STM32_PINMUX('F', 9, AF10)>, /* QUADSPI_BK1_IO1 */
-					 <STM32_PINMUX('H', 6, AF9)>, /* QUADSPI_BK1_IO2 */
-					 <STM32_PINMUX('H', 7, AF13)>; /* QUADSPI_BK1_IO3 */
+					 <STM32_PINMUX('F', 9, AF10)>; /* QUADSPI_BK1_IO1 */
 			bias-disable;
 			drive-push-pull;
 			slew-rate = <1>;
@@ -140,25 +136,6 @@
 			bias-disable;
 			drive-push-pull;
 			slew-rate = <2>;
-		};
-	};
-
-	sdmmc1_pins_mx: sdmmc1_mx-0 {
-		pins1 {
-			pinmux = <STM32_PINMUX('C', 8, AF12)>, /* SDMMC1_D0 */
-					 <STM32_PINMUX('C', 9, AF12)>, /* SDMMC1_D1 */
-					 <STM32_PINMUX('C', 10, AF12)>, /* SDMMC1_D2 */
-					 <STM32_PINMUX('C', 11, AF12)>, /* SDMMC1_D3 */
-					 <STM32_PINMUX('D', 2, AF12)>; /* SDMMC1_CMD */
-			bias-disable;
-			drive-push-pull;
-			slew-rate = <1>;
-		};
-		pins2 {
-			pinmux = <STM32_PINMUX('C', 12, AF12)>; /* SDMMC1_CK */
-			bias-disable;
-			drive-push-pull;
-			slew-rate = <3>;
 		};
 	};
 
@@ -195,12 +172,6 @@
 		pins2 {
 			pinmux = <STM32_PINMUX('D', 8, AF8)>; /* UART4_RX */
 			bias-disable;
-		};
-	};
-
-	usb_otg_hs_pins_mx: usb_otg_hs_mx-0 {
-		pins {
-			pinmux = <STM32_PINMUX('I', 7, ANALOG)>; /* USB_OTG_HS_VBUS */
 		};
 	};
 
@@ -249,15 +220,6 @@
 	/* USER CODE END iwdg2 */
 };
 
-&pwr_regulators{
-	status = "okay";
-
-	/* USER CODE BEGIN pwr_regulators */
-	vdd-supply = <&vdd>;
-	vdd_3v3_usbfs-supply = <&vdd_usb>;
-	/* USER CODE END pwr_regulators */
-};
-
 &qspi{
 	pinctrl-names = "default";
 	pinctrl-0 = <&quadspi_pins_mx>;
@@ -277,14 +239,13 @@
 		CLK_MPU_PLL1P
 		CLK_AXI_PLL2P
 		CLK_MLAHBS_PLL3
-		CLK_CKPER_DISABLED
-		CLK_QSPI_PLL3R
-		CLK_SDMMC1_HSI
-		CLK_SDMMC2_HSI
-		CLK_STGEN_HSE
+		CLK_CKPER_HSE
+		CLK_QSPI_ACLK
+		CLK_SDMMC2_PLL4P
+		CLK_STGEN_HSI
 		CLK_USBO_PLL4R
-		CLK_I2C3_PCLK6
-		CLK_UART4_PCLK1
+		CLK_I2C3_HSI
+		CLK_UART4_HSI
 		CLK_RNG1_PLL4R
 	>;
 	st,clkdiv = <
@@ -299,24 +260,24 @@
 		DIV(DIV_APB6, 1)
 	>;
 	st,pll_vco {
-		pll1_vco_2000Mhz: pll1-vco-2000Mhz {
-			src = < CLK_PLL12_HSI >;
-			divmn = < 3 61 >;
-			frac = < 0x1000 >;
+		pll1_vco_1999Mhz: pll1-vco-1999Mhz {
+			src = < CLK_PLL12_HSE >;
+			divmn = < 1 82 >;
+			frac = < 0xaaa >;
 		};
 		pll2_vco_1066Mhz: pll2-vco-1066Mhz {
-			src = < CLK_PLL12_HSI >;
-			divmn = < 3 32 >;
-			frac = < 0xa00 >;
+			src = < CLK_PLL12_HSE >;
+			divmn = < 2 65 >;
+			frac = < 0x1400 >;
 		};
-		pll3_vco_418Mhz: pll3-vco-418Mhz {
-			src = < CLK_PLL3_HSI >;
-			divmn = < 3 25 >;
-			frac = < 0x400 >;
+		pll3_vco_417Mhz: pll3-vco-417Mhz {
+			src = < CLK_PLL3_HSE >;
+			divmn = < 1 33 >;
+			frac = < 0x1a04 >;
 		};
-		pll4_vco_400Mhz: pll4-vco-400Mhz {
-			src = < CLK_PLL4_HSI >;
-			divmn = < 3 24 >;
+		pll4_vco_600Mhz: pll4-vco-600Mhz {
+			src = < CLK_PLL4_HSE >;
+			divmn = < 1 49 >;
 		};
 		/* USER CODE BEGIN rcc_st-pll_vco */
 		/* USER CODE END rcc_st-pll_vco */
@@ -329,7 +290,7 @@
 		st,pll = < &pll1_cfg1 >;
 
 		pll1_cfg1: pll1_cfg1 {
-			st,pll_vco = < &pll1_vco_2000Mhz >;
+			st,pll_vco = < &pll1_vco_1999Mhz >;
 			st,pll_div_pqr = < 0 1 1 >;
 		};
 		/* USER CODE BEGIN pll1 */
@@ -344,7 +305,7 @@
 
 		pll2_cfg1: pll2_cfg1 {
 			st,pll_vco = < &pll2_vco_1066Mhz >;
-			st,pll_div_pqr = < 1 0 0 >;
+			st,pll_div_pqr = < 1 1 0 >;
 		};
 		/* USER CODE BEGIN pll2 */
 		/* USER CODE END pll2 */
@@ -357,8 +318,8 @@
 		st,pll = < &pll3_cfg1 >;
 
 		pll3_cfg1: pll3_cfg1 {
-			st,pll_vco = < &pll3_vco_418Mhz >;
-			st,pll_div_pqr = < 1 1 1 >;
+			st,pll_vco = < &pll3_vco_417Mhz >;
+			st,pll_div_pqr = < 1 1 36 >;
 		};
 		/* USER CODE BEGIN pll3 */
 		/* USER CODE END pll3 */
@@ -371,8 +332,8 @@
 		st,pll = < &pll4_cfg1 >;
 
 		pll4_cfg1: pll4_cfg1 {
-			st,pll_vco = < &pll4_vco_400Mhz >;
-			st,pll_div_pqr = < 3 0 3 >;
+			st,pll_vco = < &pll4_vco_600Mhz >;
+			st,pll_div_pqr = < 11 59 11 >;
 		};
 		/* USER CODE BEGIN pll4 */
 		/* USER CODE END pll4 */
@@ -385,15 +346,6 @@
 
 	/* USER CODE BEGIN rng */
 	/* USER CODE END rng */
-};
-
-&sdmmc1{
-	pinctrl-names = "default";
-	pinctrl-0 = <&sdmmc1_pins_mx>;
-	status = "okay";
-
-	/* USER CODE BEGIN sdmmc1 */
-	/* USER CODE END sdmmc1 */
 };
 
 &sdmmc2{
@@ -415,8 +367,6 @@
 };
 
 &usbotg_hs{
-	pinctrl-names = "default";
-	pinctrl-0 = <&usb_otg_hs_pins_mx>;
 	status = "okay";
 
 	/* USER CODE BEGIN usbotg_hs */
