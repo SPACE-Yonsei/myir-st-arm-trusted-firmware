@@ -141,21 +141,21 @@
 
 	sdmmc2_pins_mx: sdmmc2_mx-0 {
 		pins1 {
-			pinmux = <STM32_PINMUX('B', 3, AF10)>, /* SDMMC2_D2 */
-					 <STM32_PINMUX('B', 4, AF10)>, /* SDMMC2_D3 */
-					 <STM32_PINMUX('B', 9, AF10)>, /* SDMMC2_D5 */
-					 <STM32_PINMUX('B', 14, AF10)>, /* SDMMC2_D0 */
-					 <STM32_PINMUX('B', 15, AF10)>, /* SDMMC2_D1 */
-					 <STM32_PINMUX('C', 6, AF10)>, /* SDMMC2_D6 */
-					 <STM32_PINMUX('C', 7, AF10)>, /* SDMMC2_D7 */
-					 <STM32_PINMUX('F', 0, AF10)>, /* SDMMC2_D4 */
-					 <STM32_PINMUX('G', 6, AF10)>; /* SDMMC2_CMD */
+			pinmux = <STM32_PINMUX('B', 3, AF10)>,	/* SDMMC2_D2 */
+				 <STM32_PINMUX('B', 4, AF10)>,	/* SDMMC2_D3 */
+				 <STM32_PINMUX('B', 9, AF10)>,	/* SDMMC2_D5 */
+				 <STM32_PINMUX('B', 14, AF10)>,	/* SDMMC2_D0 */
+				 <STM32_PINMUX('B', 15, AF10)>,	/* SDMMC2_D1 */
+				 <STM32_PINMUX('C', 6, AF10)>,	/* SDMMC2_D6 */
+				 <STM32_PINMUX('C', 7, AF10)>,	/* SDMMC2_D7 */
+				 <STM32_PINMUX('F', 0, AF10)>,	/* SDMMC2_D4 */
+				 <STM32_PINMUX('G', 6, AF10)>;	/* SDMMC2_CMD */
 			bias-disable;
 			drive-push-pull;
 			slew-rate = <1>;
 		};
 		pins2 {
-			pinmux = <STM32_PINMUX('E', 3, AF10)>; /* SDMMC2_CK */
+			pinmux = <STM32_PINMUX('E', 3, AF10)>;	/* SDMMC2_CK */
 			bias-disable;
 			drive-push-pull;
 			slew-rate = <3>;
