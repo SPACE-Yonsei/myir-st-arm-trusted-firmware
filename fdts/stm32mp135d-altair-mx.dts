@@ -115,6 +115,8 @@
 	quadspi_pins_mx: quadspi_mx-0 {
 		pins1 {
 			pinmux = <STM32_PINMUX('B', 2, AF9)>, /* QUADSPI_BK1_NCS */
+					 <STM32_PINMUX('D', 7, AF11)>, /* QUADSPI_BK1_IO2 */
+					 <STM32_PINMUX('D', 13, AF9)>, /* QUADSPI_BK1_IO3 */
 					 <STM32_PINMUX('F', 8, AF10)>, /* QUADSPI_BK1_IO0 */
 					 <STM32_PINMUX('F', 9, AF10)>; /* QUADSPI_BK1_IO1 */
 			bias-disable;
@@ -140,13 +142,13 @@
 					 <STM32_PINMUX('C', 7, AF10)>, /* SDMMC2_D7 */
 					 <STM32_PINMUX('F', 0, AF10)>, /* SDMMC2_D4 */
 					 <STM32_PINMUX('G', 6, AF10)>; /* SDMMC2_CMD */
-			bias-disable;
+			bias-pull-up;
 			drive-push-pull;
 			slew-rate = <1>;
 		};
 		pins2 {
 			pinmux = <STM32_PINMUX('E', 3, AF10)>; /* SDMMC2_CK */
-			bias-disable;
+			bias-pull-up;
 			drive-push-pull;
 			slew-rate = <3>;
 		};
@@ -162,6 +164,18 @@
 		pins2 {
 			pinmux = <STM32_PINMUX('D', 8, AF8)>; /* UART4_RX */
 			bias-disable;
+		};
+	};
+
+	usb_otg_hs_pins_mx: usb_otg_hs_mx-0 {
+		pins1 {
+			pinmux = <STM32_PINMUX('A', 14, AF10)>; /* USB_OTG_HS_SOF */
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <0>;
+		};
+		pins2 {
+			pinmux = <STM32_PINMUX('I', 7, ANALOG)>; /* USB_OTG_HS_VBUS */
 		};
 	};
 
@@ -347,6 +361,8 @@
 };
 
 &usbotg_hs{
+	pinctrl-names = "default";
+	pinctrl-0 = <&usb_otg_hs_pins_mx>;
 	status = "okay";
 
 	/* USER CODE BEGIN usbotg_hs */
